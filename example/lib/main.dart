@@ -10,7 +10,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:rtmp_broadcaster/camera.dart';
+import 'package:camera_forma/camera.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -121,7 +121,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome> with WidgetsBindi
       appBar: AppBar(
         title: const Text('Camera example'),
       ),
-      body: Stack(
+      body: Column(
         children: <Widget>[
           Expanded(
             child: Container(
@@ -142,7 +142,8 @@ class _CameraExampleHomeState extends State<CameraExampleHome> with WidgetsBindi
           ),
           _captureControlRowWidget(),
           //_toggleAudioWidget(),
-          Padding(
+          _cameraTogglesRowWidget(),
+          /*Padding(
             padding: const EdgeInsets.all(5.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -151,7 +152,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome> with WidgetsBindi
                 // _thumbnailWidget(),
               ],
             ),
-          ),
+          ),*/
         ],
       ),
     );
@@ -172,12 +173,9 @@ class _CameraExampleHomeState extends State<CameraExampleHome> with WidgetsBindi
     
     //return CameraPreview(controller!);
 
-    return AspectRatio(
-      aspectRatio: controller!.value.aspectRatio,
-      child: CameraPreview(controller!),
-    );
+    return CameraPreview(controller!);
   }
-
+  
   /// Toggle recording audio
   Widget _toggleAudioWidget() {
     return Padding(
@@ -293,11 +291,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome> with WidgetsBindi
       }
     }
 
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: Row(children: toggles));
+    return Row(children: toggles);
   }
 
   String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();

@@ -1,4 +1,4 @@
-# forma_camera
+# camera_forma
 
 RTMP streaming and camera plugin.
 

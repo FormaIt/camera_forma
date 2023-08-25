@@ -1,11 +1,11 @@
-#import "RtmppublisherPlugin.h"
-#if __has_include("rtmp_broadcaster/rtmp_broadcaster-Swift.h")
-#import <rtmp_broadcaster/rtmp_broadcaster-Swift.h>
+#import "FormaCameraPlugin.h"
+#if __has_include("camera_forma/camera_forma-Swift.h")
+#import <camera_forma/camera_forma-Swift.h>
 #else
 // Support project import fallback if the generated compatibility header
 // is not copied when this plugin is created as a library.
 // https://forums.swift.org/t/swift-static-libraries-dont-copy-generated-objective-c-header/19816
-#import "rtmp_broadcaster-Swift.h"
+#import "camera_forma-Swift.h"
 #endif
 
 #import <AVFoundation/AVFoundation.h>
@@ -848,7 +848,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 - (void)startImageStreamWithMessenger:(NSObject<FlutterBinaryMessenger> *)messenger {
     if (!_isStreamingImages) {
         FlutterEventChannel *eventChannel =
-        [FlutterEventChannel eventChannelWithName:@"plugins.flutter.io/rtmp_publisher/imageStream"
+        [FlutterEventChannel eventChannelWithName:@"plugins.flutter.io/camera_forma/imageStream"
                                   binaryMessenger:messenger];
         
         _imageStreamHandler = [[FLTImageStreamHandler alloc] init];
@@ -994,20 +994,20 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 }
 @end
 
-@interface RtmppublisherPlugin ()
+@interface FormaCameraPlugin ()
 @property(readonly, nonatomic) NSObject<FlutterTextureRegistry> *registry;
 @property(readonly, nonatomic) NSObject<FlutterBinaryMessenger> *messenger;
 @property(readonly, nonatomic) FLTCam *camera;
 @end
 
-@implementation RtmppublisherPlugin {
+@implementation FormaCameraPlugin {
     dispatch_queue_t _dispatchQueue;
 }
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
     FlutterMethodChannel *channel =
-    [FlutterMethodChannel methodChannelWithName:@"plugins.flutter.io/rtmp_publisher"
+    [FlutterMethodChannel methodChannelWithName:@"plugins.flutter.io/camera_forma"
                                 binaryMessenger:[registrar messenger]];
-    RtmppublisherPlugin *instance = [[RtmppublisherPlugin alloc] initWithRegistry:[registrar textures]
+    FormaCameraPlugin *instance = [[FormaCameraPlugin alloc] initWithRegistry:[registrar textures]
                                                                         messenger:[registrar messenger]];
     [registrar addMethodCallDelegate:instance channel:channel];
 }
@@ -1023,7 +1023,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     if (_dispatchQueue == nil) {
-        _dispatchQueue = dispatch_queue_create("com.app.rtmp_broadcaster.dispatchqueue", NULL);
+        _dispatchQueue = dispatch_queue_create("com.app.camera_forma.dispatchqueue", NULL);
     }
     
     // Invoke the plugin on another dispatch queue to avoid blocking the UI.
@@ -1086,7 +1086,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
             };
             FlutterEventChannel *eventChannel = [FlutterEventChannel
                                                  eventChannelWithName:[NSString
-                                                                       stringWithFormat:@"plugins.flutter.io/rtmp_publisher/cameraEvents%lld",
+                                                                       stringWithFormat:@"plugins.flutter.io/camera_forma/cameraEvents%lld",
                                                                        textureId]
                                                  binaryMessenger:_messenger];
             [eventChannel setStreamHandler:cam];

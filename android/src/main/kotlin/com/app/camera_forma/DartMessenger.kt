@@ -33,7 +33,7 @@ class DartMessenger(messenger: BinaryMessenger, eventChannelId: Long) {
 
     init {
         assert(messenger != null);
-        EventChannel(messenger, "plugins.flutter.io/rtmp_publisher/cameraEvents$eventChannelId")
+        EventChannel(messenger, "plugins.flutter.io/camera_forma/cameraEvents$eventChannelId")
                 .setStreamHandler(
                         object : EventChannel.StreamHandler {
                             override fun onListen(arguments: Any?, sink: EventSink) {

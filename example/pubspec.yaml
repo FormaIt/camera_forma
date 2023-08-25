@@ -1,5 +1,5 @@
 name: camera_forma_example
-description: Demonstrates how to use the rtmp_broadcaster plugin.
+description: Demonstrates how to use the camera_forma plugin.
 
 publish_to: 'none'
 
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  rtmp_broadcaster:
+  camera_forma:
     path: ../
 
   path_provider: ^2.0.15

@@ -1,17 +1,17 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint rtmp_broadcaster.podspec' to validate before publishing.
+# Run `pod lib lint camera_forma.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'rtmp_broadcaster'
+  s.name             = 'camera_forma'
   s.version          = '0.0.1'
   s.summary          = 'FLutter plugin to allow rtmp to work with ios.'
   s.description      = <<-DESC
 A new flutter plugin project.
                        DESC
-  s.homepage         = 'https://github.com/nhancv/flutter_rtmp_broadcaster'
+  s.homepage         = 'https://github.com/FormaIt/camera_forma'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'WhelkSoft' => 'pinkfish@gmail.com' }
+  s.author           = { 'FormaIt' => 'support@formastar.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'

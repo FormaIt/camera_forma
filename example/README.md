@@ -1,6 +1,6 @@
-# rtmp_publisher_example
+# camera_forma_example
 
-Demonstrates how to use the rtmp_publisher plugin.
+Demonstrates how to use the camera_forma plugin.
 
 ## Getting Started
 
