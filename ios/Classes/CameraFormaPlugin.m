@@ -1,4 +1,4 @@
-#import "FormaCameraPlugin.h"
+#import "CameraFormaPlugin.h"
 #if __has_include("camera_forma/camera_forma-Swift.h")
 #import <camera_forma/camera_forma-Swift.h>
 #else
@@ -994,20 +994,20 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 }
 @end
 
-@interface FormaCameraPlugin ()
+@interface CameraFormaPlugin ()
 @property(readonly, nonatomic) NSObject<FlutterTextureRegistry> *registry;
 @property(readonly, nonatomic) NSObject<FlutterBinaryMessenger> *messenger;
 @property(readonly, nonatomic) FLTCam *camera;
 @end
 
-@implementation FormaCameraPlugin {
+@implementation CameraFormaPlugin {
     dispatch_queue_t _dispatchQueue;
 }
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
     FlutterMethodChannel *channel =
     [FlutterMethodChannel methodChannelWithName:@"plugins.flutter.io/camera_forma"
                                 binaryMessenger:[registrar messenger]];
-    FormaCameraPlugin *instance = [[FormaCameraPlugin alloc] initWithRegistry:[registrar textures]
+    CameraFormaPlugin *instance = [[CameraFormaPlugin alloc] initWithRegistry:[registrar textures]
                                                                         messenger:[registrar messenger]];
     [registrar addMethodCallDelegate:instance channel:channel];
 }
