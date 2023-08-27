@@ -273,7 +273,9 @@ FourCharCode const videoFormat = kCVPixelFormatType_32BGRA;
     if ([_captureDevice position] == AVCaptureDevicePositionFront) {
         connection.videoMirrored = YES;
     }
-    connection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+    // FEHMİ SİLDİ connection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+    // FEHMİ AŞAĞIDAKİ SATIRI EKLEDİ
+    connection.videoOrientation = AVCaptureVideoOrientation(rawValue: UIApplication.shared.statusBarOrientation.rawValue)!;
     [_captureSession addInputWithNoConnections:_captureVideoInput];
     [_captureSession addOutputWithNoConnections:_captureVideoOutput];
     [_captureSession addConnection:connection];
